@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+       <a  class="nav-link" href="/"><h5>Inventory Management System</h5></a> 
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'management' %}">Management</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'create_inventory' %}">Add item</a>
+                </li>
+                <li class="nav-item active">
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'list_inventory' %}">List Item</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'list_orders' %}">List Order</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'list_sold' %}">Transaction</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+   
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

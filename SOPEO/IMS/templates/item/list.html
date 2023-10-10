@@ -1,0 +1,52 @@
+{% extends 'home.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row ">
+        <div class="col-12  mt-5">
+            <div class="table">
+                <table class="table table-bordered"">
+                    <thead class="thead-dark">
+                        <th colspan="8" class="text-center text-primary">Inventory Items</th>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>IIN</th>
+                            <th>Quantity Sold</th>
+                            <th>Cost </th>
+                            <th>Selling_price </th>
+                            <th>Quantity</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in inventory_items  %}
+                        <tr>
+                            <td>{{i.id}}</td>
+                            <td>{{i.name}}</td>
+                            <td>{{i.iin}}</td>
+                            <td>{{i.quantity_sold}}</td>
+                            <td>₹{{i.cost}}</td>
+                            <td>₹{{i.selling_price}}</td>
+                            <td>{{i.quantity}}</td>
+                            <td>
+                                <a href="{% url 'inventory_detail' i.id %}"  class=" demo btn btn-warning"> View</a>
+                                <a href="{% url 'sell_item' i.id %}" class="demo btn btn-success">Sell</a>
+                                <a href="{% url 'edit_inventory' i.id %}" class=" demo btn btn-info"> Edit</a>
+                                <a href="{% url 'delete_inventory' id=i.id %}" class=" demo btn btn-danger"> Delete</a>
+                                <a href="{% url 'create_order' i.id %}"  class=" demo btn btn-primary">Order More</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

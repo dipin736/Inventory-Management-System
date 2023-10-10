@@ -1,0 +1,13 @@
+body{
+    background-image: url('https://www.kindpng.com/picc/m/567-5674919_inventory-management-inventory-management-system-png-transparent-png.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    
+    
+}
+
+nav,footer{
+    background-image: linear-gradient(#EDEDFF, #F3E8F3A2,#FDDFDF);
+}
+

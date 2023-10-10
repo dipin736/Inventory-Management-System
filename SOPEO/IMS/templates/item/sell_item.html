@@ -1,0 +1,21 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+<div class="row mt-5">
+    <div class="col-6 offset-3  bg-light shadow p-3">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                Item name- {{item.name}}
+                {{form|crispy}}
+                <button class="btn btn-primary btn-block">Sell</button>
+            </form>
+    </div>
+</div>
+
+
+{% endblock content %}

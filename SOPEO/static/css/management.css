@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100&family=Roboto&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* navbar  */
+.navbar{
+    background: linear-gradient(90deg, rgba(249, 246, 246, 1) 1.36%, #FFE0E0, #FF6464 86.49%);
+
+}
+.chart-card {
+    height: 340px; 
+}
+#home{
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+    padding-top: 5px;
+}
+#home a {
+    text-decoration: none;
+  }
+#sidebar{
+    background: linear-gradient(#8B4367, #343571);
+}
+
+
+/* key-metrices */
+.metrices-heading{
+    background: linear-gradient(#FFA2A280,#FFB8DF80);
+    color: white;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35.16px;
+    border: 1px solid;
+    border-radius: 8px;
+  
+}
+.key-headings{
+    background-color: #CCCCDC59;
+    border: 1px solid ;
+    border-radius: 15px;
+   
+}
+.key-heading1{
+    background-color: rgba(238, 238, 238, 0.3);
+    border: 3px solid white;
+    border-radius: 15px;
+}
+
+.ip-transfers{
+    font-family: Roboto;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 47px;
+    letter-spacing: 0em;
+
+}
+.key-heading1 span{
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+
+}
+.Registration-heading-title{
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0em;
+    
+
+
+}
+.Registration-heading-title2{
+    font-family: Roboto;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0em;
+    color: #8e8c8c;    
+}
+#visits{
+    background-color: #676795;
+    color: white;
+    border: 2px solid;
+    border-radius: 10px;
+}
+
+.t-tomato {
+    color:#FF6464;
+}
+
+.t-green {
+    color: rgba(92, 177, 118, 0.7) ; 
+}
+
+#border{
+    border: 2px solid white;
+    border-radius: 10px;
+ 
+}
+
+.text-management{
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(52, 53, 113, 1);
+
+}
+
+/* ...................zone statistics....................  */
+
+.zone{
+    background-color: rgba(1, 2, 78, 1);
+    color: white;
+    font-family: Roboto;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0em;
+    border: 1px solid  white;
+    border-radius: 8px;
+    text-align: center;
+    
+}
+.green{
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    background: rgba(114, 192, 144, 1);
+    border: 1px solid white;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+
+}
+.yellow{
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    background: rgba(242, 157, 65, 1);
+    border: 1px solid white;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+
+}
+.red{
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    background: rgba(255, 100, 100, 1);
+    border: 1px solid white;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+
+}
+
+.col-3.zone.d-flex.justify-content-between {
+    background: rgba(235, 235, 255, 1);
+}
+
+.mr-auto p-1 zone-text{
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(119, 119, 119, 1);
+   
+    
+}
+
+.zone-one{
+    background: rgba(235, 235, 255, 1);
+    border: 1px solid white;
+    border-radius: 8px;
+}
+
+#zone{
+    background: rgba(235, 235, 255, 1);
+    border: 1px solid white;
+    border-radius: 12px;
+
+}
+#i-span{
+    background: rgba(255, 255, 255, 1);
+    width: Hug (158px);
+    height: Hug (41px);
+    top: 230.51px;
+    left: 1207.5px;
+    padding: 1px, 10px, 1px, 15px;
+    border-radius: 14px;
+    gap: 5px;
+    align-items: center;
+
+}
+
+
+
+#green-zone{
+    background: rgba(198, 240, 194, 0.5);
+    border: 1px solid white;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+
+}
+#yellow-zone{
+    background: rgba(245, 190, 103, 0.5);
+    border: 1px solid white;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center; 
+}
+#red-zone{
+    background: rgba(255, 224, 224, 0.6);
+    border: 1px solid white;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center; 
+
+}
+
+/* current-waiting status  */
+.card-text.current{
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 23px;
+    letter-spacing: 0em;
+    color:rgba(204, 204, 204, 1);
+}
+
+.card-title.status{ 
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28px;
+    letter-spacing: 0em;
+    color:rgba(255, 100, 100, 1)
+}
+#waiting-status{
+    background: linear-gradient(0deg, #FFF9F9, #FFF9F9),
+    linear-gradient(0deg, #DDDDDD, #DDDDDD);
+    
+}
+
+#for-traige-bc{
+    background: linear-gradient(180deg, rgba(84, 56, 100, 0.9) 0%, rgba(118, 96, 131, 0.9) 100%);
+}
+
+#for{
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0em;
+    color: rgba(255, 255, 255, 1);
+
+}
+#Triage{
+    font-family: Roboto;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 35px;
+    letter-spacing: 0em;
+    color: rgba(255, 255, 255, 1);
+
+
+}
+.tc-count{
+    font-family: Roboto;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 68px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: rgba(153, 153, 153, 1);
+}
+#patient{
+    width: 17.93px;
+    height: 27.89px;
+    top: 3.05px;
+    left: 8.04px;
+
+}
+.tc-time{
+    font-family: Roboto;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 53px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+/* doctor-statistics table  */
+
+#myTable{
+    line-height: 0.8;
+}
+
+#myTable thead th:nth-child(n) {
+    background: rgba(248, 248, 255, 1);
+    content: none; 
+}
+
+#myTable tbody tr td:nth-child(2) {
+    background-color: rgba(238, 238, 238, 1); 
+}
+
+#doctor-nav{
+background: linear-gradient(100.36deg, rgba(103, 103, 149, 0.56) 1.92%, rgba(103, 103, 149, 0.56) 1.93%, rgba(235, 235, 255, 0.7) 100.29%);
+
+}
+
+#doctor-text{
+    font-family: Roboto;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 38px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(255, 255, 255, 1);
+    
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 8px;
+    margin-right: 5px;
+    text-align: center;
+    color: black;
+    background-color: blue;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background-color: #007bff;
+    color: #d19d00;
+}
+
+
+.first-row{
+    background: rgb(34, 34, 173);
+    padding: 515px;
+
+}
+
+.v-count{
+    background: rgba(238, 238, 238, 1);
+
+}
+
+#search{
+    font-family: "Arial", "FontAwesome";
+}
+    

@@ -1,0 +1,69 @@
+{% extends 'home.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row ">
+        <div class="col-12 mt-4 ">
+            <div>
+                <table class="table table-bordered"">
+                    <thead>
+                        <th colspan="8" class="text-center text-primary">Order list</th>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>IIN</th>
+                            <th>Cost </th>
+                            <th>Selling_price </th>
+                            <th>Quantity</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                            <tr>
+                                <td>{{ order.id }}</td>
+                                <td>{{ order.item.name }}</td>
+                                <td>{{order.item.iin}}</td>
+                                <td>₹{{order.cost}}</td>
+                                <td>₹{{order.item.selling_price}}</td>
+                                <td>{{ order.quantity }}</td>
+                                <td>{{order.orderdttm}}</td>
+                                <td class="text-center">
+                                        {% if order.is_received == True %}
+                                            <p style="color: black; background-color: rgb(12, 243, 12); font-size: larger;">Confirmed</p>
+                                        {% else %}
+                                            {% if order.is_cancel == True %}
+                                                <p style="color: red; background-color: black; font-size: larger;">Cancelled...</p>
+                                            {% endif %}
+                                        {% endif %}
+                                </td>
+                                <td>
+                                    {% if not order.is_received and not order.is_cancel %}
+                                    <div style="display: flex; align-items: center;">
+                                        <form method="post" action="{% url 'confirm_order' order.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-warning">Confirm</button>
+                                        </form>
+                                        <form method="post" action="{% url 'cancel_order' order.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class=" m-2 btn btn-danger" >Cancel</button>
+                                        </form>
+                                    </div>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

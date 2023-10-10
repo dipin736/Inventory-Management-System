@@ -1,0 +1,872 @@
+{% load static %}
+{% load seconds_to_hm %}
+
+{% include 'navbar/management_nav.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% include 'sidebar/sidebar.html' %}
+        <!-- ............................Key Metrices..............................  -->
+        <div class="col-md-3 pt-2 min-vh-100">
+            <div class="metrics">
+                <div class="key-heading">
+                    <h4 class="metrices-heading">Key Metrics</h4>
+                </div>
+            </div>
+            <div class="key-headings mt-3" id="border">
+                <span>Queue to Registration</span>
+                <div class="d-flex justify-content-between">
+                    <h4 class="mr-auto p-1  Registration-heading-title">Registration Time</h4>
+                    <div class="d-flex align-items-center">
+                        <i class="p-2 fa-regular fa-clock"></i>
+                        {% seconds_to_hm key_metrics.registration.time as avg_regtm %}
+                        <span
+                            class="time {% if key_metrics.registration.time > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                            {{ avg_regtm | default:"00:00" }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="key-heading1 mt-3">
+                <span>Registration to Triage</span>
+                <div class="d-flex justify-content-between">
+                    <h4 class="mr-auto p-1  Registration-heading-title">Time to Triage</h4>
+                    <div class="d-flex align-items-center">
+                        <i class="p-2 fa-regular fa-clock"></i>
+                        {% seconds_to_hm key_metrics.triage_done.time as triage_done_tm%}
+                        <span
+                            class="time {% if key_metrics.triage_done.time > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                            {{ triage_done_tm | default:"00:00" }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="key-heading1 mt-3">
+                <span>Triage to Consult</span>
+                <div class="d-flex justify-content-between">
+                    <h4 class="mr-auto p-1  Registration-heading-title2">Time to Consult</h4>
+                    <div class="d-flex align-items-center">
+                        <i class="p-2 fa-regular fa-clock"></i>
+                        {% seconds_to_hm key_metrics.cons_done.time as cons_done_tm %}
+                        <span
+                            class="time {% if key_metrics.cons_done.time > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                            {{ cons_done_tm | default:"00:00" }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="key-heading1 mt-3">
+                <span>Triage End to Discharge</span>
+                <div class="d-flex justify-content-between">
+                    <h4 class="mr-auto p-1  Registration-heading-title2">In Zone Time</h4>
+                    <div class="d-flex align-items-center">
+                        <i class="p-2 fa-regular fa-clock"></i>
+                        {% seconds_to_hm key_metrics.in_zone.time as zone_time%}
+                        <span
+                            class="time {% if key_metrics.in_zone.time > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                            {{ zone_time | default:"00:00" }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="key-heading1 mt-3">
+                <span>Consultation to Discharge</span>
+                <div class="d-flex justify-content-between">
+                    <h4 class="mr-auto p-1  Registration-heading-title2">Treatment Time</h4>
+                    <div class="d-flex align-items-center">
+                        <i class="p-2 fa-regular fa-clock"></i>
+                        {% seconds_to_hm key_metrics.treatment.time as avg_treattm %}
+                        <span
+                            class="time {% if key_metrics.treatment.time > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                            {{ avg_treattm | default:"00:00" }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="key-heading1 mt-3">
+                <span>Lab Order Request to Processing</span>
+                <div class="d-flex justify-content-between">
+                    <h4 class="mr-auto p-1  Registration-heading-title2">Lab Processing Time</h4>
+                    <div class="d-flex align-items-center">
+                        <i class="p-2 fa-regular fa-clock"></i>
+                        <span class=""> 00:00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="key-heading1 mt-3">
+                <span>Radiology Order Request to Processing</span>
+                <div class="d-flex justify-content-between">
+                    <h4 class="mr-auto p-1  Registration-heading-title2">Radiology Processing Time</h4>
+                    <div class="d-flex align-items-center">
+                        <i class="p-2 fa-regular fa-clock"></i>
+                        <span class=""> 00:00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="key-heading1 mt-3">
+                <span>UCC Discharge to IP Bed Allotment</span>
+                <div class="d-flex justify-content-between">
+                    <h4 class="mr-auto p-1  Registration-heading-title2">IP Transfers</h4>
+                    <div>
+                        <img src="{% static 'image/icons8-patient (1) 1.png' %}" alt="">
+                        <span class="ip-transfers">{{key_metrics.ip_transfers.completed.count}}</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="p-2 fa-regular fa-clock"></i>
+                        {% seconds_to_hm key_metrics.ip_transfers.ipt_complete_time.time as ipt_complete_time%}
+                        <span
+                            class="time {% if key_metrics.ip_transfers.ipt_complete_time.time  > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                            {{ ipt_complete_time | default:"00:00" }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="container mt-3" id="visits">
+                <div class="row">
+                    <div class="col">
+                        <div class="key-visits text-center">
+                            <span>Total Visits</span>
+                            <h4>{{key_metrics.total.count}}</h4>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="key-visits text-center">
+                            <span class="">Visit Time</span> <br>
+                            {% seconds_to_hm completed.avg_act_tm as avg_visittm %}
+                            <span class="bg-white text-danger p-1">
+                                {{ avg_visittm | default:"00:00" }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="conatiner mt-3">
+                <div class="row">
+                    <div class="col">
+                        <div>
+                            <img src="{% static 'image/Group 7422.jpg' %}" alt="">
+                            <span class="">Insurance</span>
+                            <div class="d-flex justify-content-between">
+                                <h4 class="mr-auto p-1 ">{{completed.Payor.Insurance.count}}</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="p-2 fa-regular fa-clock"></i>
+                                    {% seconds_to_hm completed.Payor.Insurance.time as Insurancetime %}
+                                    <span
+                                        class="time {% if completed.Payor.Insurance.time > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                        {{ Insurancetime | default:"00:00" }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <img src="{% static 'image/Vector.png' %}" alt="">
+                            <span class="">Self pay</span> <br>
+                            <div class="d-flex justify-content-between">
+                                <h4 class="mr-auto p-1">{{completed.Payor.Self_Pay.count}}</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="p-2 fa-regular fa-clock"></i>
+                                    {% seconds_to_hm completed.Payor.Self_Pay.time as Self_Pay_time%}
+                                    <span
+                                        class="time {% if  completed.Payor.Self_Pay.time > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                        {{ Self_Pay_time | default:"00:00" }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div>
+                            <img src="{% static 'image/icons8-icons8-international-50 (1) 1.png' %}" alt="">
+                            <span class="">International</span>
+                            <div class="d-flex justify-content-between">
+                                <h4 class="mr-auto p-1">{{completed.Residency.International.count}}</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="p-2 fa-regular fa-clock"></i>
+                                    {% seconds_to_hm completed.Residency.International.time as Internationaltime %}
+                                    <span
+                                        class="time {% if  completed.Residency.International.time > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                        {{ Internationaltime | default:"00:00" }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <img src="{% static 'image/icons8-local (2) 1.png' %}" alt="">
+                            <span class="">Local</span> <br>
+                            <div class="d-flex justify-content-between">
+                                <h4 class="mr-auto p-1 ">{{completed.Residency.Local.count}}</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="p-2 fa-regular fa-clock"></i>
+                                    {% seconds_to_hm completed.Residency.Local.time as Localtime%}
+                                    <span
+                                        class="time {% if  completed.Residency.Local.time > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                        {{ Localtime | default:"00:00" }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!-- zone statictics first row. -->
+        <div class="col pt-2 min-vh-100">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="zone">Zone Statistics</p>
+                            <div class="d-flex justify-content-between" id="zone">
+                                <div class="d-flex align-items-center">
+                                    <img src="{% static 'image/visits.png' %}" alt="">
+                                </div>
+                                <p class="mr-auto p-1">Total Visits</p>
+                            </div>
+                            <div class="d-flex justify-content-between" id="zone">
+                                <div class="d-flex align-items-center">
+                                    <img src="{% static 'image/icons8-active-directory (1) 1.png' %}" alt="">
+                                </div>
+                                <p class="mr-auto p-1">Active</p>
+                            </div>
+                            <div class="d-flex justify-content-between" id="zone">
+                                <div class="d-flex align-items-center">
+                                    <img src="{% static 'image/Group.png' %}" alt="">
+                                </div>
+                                <p class="mr-auto p-1">Discharged</p>
+                            </div>
+                            <div class="d-flex justify-content-between" id="zone">
+                                <div class="d-flex align-items-center">
+                                    <img src="{% static 'image/icons.png' %}" alt="">
+                                </div>
+                                <p class="mr-auto p-1">Average Triage Time</p>
+                            </div>
+                            <div class="d-flex justify-content-between" id="zone">
+                                <div class="d-flex align-items-center">
+                                    <img src="{% static 'image/icons8-important-time (1) 1.png' %}" alt="">
+                                </div>
+                                <p class="mr-auto p-1">Average Hold time</p>
+                            </div>
+                            <div class="d-flex justify-content-between" id="zone">
+                                <div class="d-flex align-items-center">
+                                    <img src="{% static 'image/icons8-patient-wating 1.png' %}" alt="">
+                                </div>
+                                <p class="mr-auto p-1">Average Visit Time</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="green">Green Zone</span></p>
+                                <div id="green-zone">
+                                    <p class="text-center mr-auto p-1">{{zonestats.green.total_visits_count}}</p>
+                                </div>
+                                <div id="green-zone">
+                                    <p class="text-center mr-auto p-1">{{zonestats.green.active_count}}</p>
+                                </div>
+                                <div id="green-zone">
+                                    <p class="text-center mr-auto p-1">	{{zonestats.green.discharge_count}}</p>
+                                </div>
+                                <div class="p-2" id="green-zone">
+                                    <div class="d-flex align-items-center" id="i-span">
+                                        <i class="p-2 fa-regular fa-clock"></i>
+                                        {% seconds_to_hm zonestats.green.avg_triage_tm as greenavg_triage %}	
+                                        <span
+                                            class="time {% if  zonestats.green.avg_triage_tm > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                            {{ greenavg_triage | default:"00:00" }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="p-2" id="green-zone">
+                                    <div class="d-flex align-items-center" id="i-span">
+                                        <i class="p-2 fa-regular fa-clock"></i>
+                                        {% seconds_to_hm zonestats.green.avg_zone_tm as greenavg_zone %}					
+                                        <span
+                                            class="time {% if  zonestats.green.avg_zone_tm > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                            {{ greenavg_zone | default:"00:00" }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="p-2" id="green-zone">
+                                    <div class="d-flex align-items-center" id="i-span">
+                                        <i class="p-2 fa-regular fa-clock"></i>
+                                        {% seconds_to_hm zonestats.green.avg_visit_tm as greenavg_visit %}					
+                                        <span
+                                            class="time {% if  zonestats.green.avg_visit_tm > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                            {{ greenavg_visit | default:"00:00" }}
+                                        </span>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="yellow">Yellow Zone</span></p>
+                            <div id="yellow-zone">
+                                <p class="text-center mr-auto p-1">	{{zonestats.yellow.total_visits_count}}</p>
+                            </div>
+                            <div id="yellow-zone">
+                                <p class="text-center mr-auto p-1">	{{zonestats.yellow.active_count}}</p>
+                            </div>
+                            <div id="yellow-zone">
+                                <p class="text-center mr-auto p-1">{{zonestats.yellow.discharge_count}}</p>
+                            </div>
+                            <div class="p-2" id="yellow-zone">
+                                <div class="d-flex align-items-center" id="i-span">
+                                    <i class="p-2 fa-regular fa-clock"></i>
+                                    {% seconds_to_hm zonestats.yellow.avg_triage_tm as greenavg_triage %}								
+                                    <span
+                                        class="time {% if  zonestats.yellow.avg_triage_tm > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                        {{ greenavg_triage | default:"00:00" }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-2" id="yellow-zone">
+                                <div class="d-flex align-items-center" id="i-span">
+                                    <i class="p-2 fa-regular fa-clock"></i>
+                                    {% seconds_to_hm zonestats.yellow.avg_zone_tm as greenavg_zone %}								
+                                    <span
+                                        class="time {% if  zonestats.yellow.avg_zone_tm > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                        {{ greenavg_zone | default:"00:00" }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-2" id="yellow-zone">
+                                <div class="d-flex align-items-center" id="i-span">
+                                    <i class="p-2 fa-regular fa-clock"></i>
+                                    {% seconds_to_hm zonestats.yellow.avg_visit_tm as greenavg_visit %}									
+                                    <span
+                                        class="time {% if  zonestats.yellow.avg_visit_tm > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                        {{ greenavg_visit | default:"00:00" }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="red">Red Zone</span></p>
+                            <div id="red-zone">
+                                <p class="text-center mr-auto p-1">{{zonestats.red.total_visits_count}}</p>
+                            </div>
+                            <div id="red-zone">
+                                <p class="text-center mr-auto p-1">{{zonestats.red.active_count}}</p>
+                            </div>
+                            <div id="red-zone">
+                                <p class="text-center mr-auto p-1">{{zonestats.red.discharge_count}}</p>
+                            </div>
+                            <div class="p-2" id="red-zone">
+                                <div class="d-flex align-items-center" id="i-span">
+                                    <i class="p-2 fa-regular fa-clock"></i>
+                                    {% seconds_to_hm zonestats.red.avg_triage_tm as greenavg_triage %}					
+                                    <span
+                                        class="time {% if  zonestats.red.avg_triage_tm > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                        {{ greenavg_triage | default:"00:00" }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-2" id="red-zone">
+                                <div class="d-flex align-items-center" id="i-span">
+                                    <i class="p-2 fa-regular fa-clock"></i>
+                                    {% seconds_to_hm zonestats.red.avg_zone_tm as greenavg_zone %}								
+                                    <span
+                                        class="time {% if zonestats.red.avg_zone_tm > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                        {{ greenavg_zone | default:"00:00" }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="p-2" id="red-zone">
+                                <div class="d-flex align-items-center" id="i-span"  >
+                                    <i class="p-2 fa-regular fa-clock"></i>
+                                    {% seconds_to_hm zonestats.red.avg_visit_tm as greenavg_visit %}								
+                                    <span
+                                        class="time {% if  zonestats.red.avg_visit_tm > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                        {{ greenavg_visit | default:"00:00" }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- apex graph with same row  -->
+
+                <div class="col-md-3">
+                    <div class="card">
+                        <div id="chartinterval"></div>
+                    </div>
+                </div>
+            </div>
+
+                       <!-- second row-3- apex graph  -->
+            <div class="row pt-2 min-vh-10">
+                <div class="col-md-4 m-0 p-0">
+                    <div class="card chart-card">
+                        <div class="mt-3" id="donut-chart"></div>
+                    </div>
+                </div>
+                <div class="col-md-4 m-0 p-1 ">
+                    <div class="card chart-card">
+                        <div id="chart"></div>
+                    </div>
+                </div>
+                <div class="col-md-4 m-0 p-1 ">
+                    <div class="card chart-card">
+                        <div id="chartdoctor"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Last row  with  pagination...... -->
+
+            <div class="row">
+                <div class="col-md-3 m-0 p-1">
+                    <div class="card chart-card pt-3" id="waiting-status">
+                        <div class="card-body">
+                            <p class="card-text current">Current</p>
+                            <h4 class="card-title status">Waiting Status</h4>
+                            <div class="pt-2">
+                                <img src="{% static 'image/Group 7557.png' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 m-0 p-1">
+                   <div class="card " id="waiting-status">
+                        <div class="card-body" id="for-traige-bc">
+                            <img src="{% static 'image/icons8-doctors-bag 1.png' %}" alt="">
+                            <span class="card-text Triage" id="for">For</span>
+                            <span class="card-title Traige" id="Triage">Triage</span>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col m-1">
+                                <img src="{% static 'image/icons8-patient (1) 1.png' %}" alt="">
+                                <span class="tc-count">{{inprogress.pdTriage.count}}</span>
+                            </div>
+                            <div class="col m-2">
+                                <i class="p-2 fa-regular fa-clock"></i> 
+                            	{% seconds_to_hm inprogress.pdTriage.time as avg_elapsed_triage %}								
+                                <span
+                                    class="tc-time time {% if  inprogress.pdTriage.time > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                    {{ avg_elapsed_triage | default:"00:00" }}
+                                </span>                    
+                            </div>
+                        </div>
+                   </div>
+                   <div class="card">
+                        <div class="card">
+                            <div class="card-body" id="for-traige-bc">
+                                <img  src="{% static 'image/icons8-patient (1) 1.png' %}" alt="">
+                                <span class="card-text Triage" id="for">For</span>
+                                <span class="card-title Traige" id="Triage">Consultation</span>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col m-4">
+                                    <img  src="{% static 'image/icons8-patient (1) 1.png' %}" alt="">
+                                    <span class="tc-count">{{inprogress.pdConsultation.count}}</span>
+                                </div>
+                                <div class="col m-4">
+                                    <i class="p-2 fa-regular fa-clock"></i>
+                                    {% seconds_to_hm inprogress.pdConsultation.time as avg_elapsed_cons %}											
+                                <span
+                                    class=" tc-time time {% if inprogress.pdConsultation.time > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                    {{ avg_elapsed_cons | default:"00:00" }}
+                                </span>   
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+                <div class="col-md-5 m-0 p-1">
+                   <div class="card chart-card">
+                    <nav class="navbar navbar-expand-sm navbar-light" id="doctor-nav">
+                        <div>
+                            <img src="{% static 'image/icons8-patient (1) 1.png' %}" alt="">
+                            <a class="navbar-brand" id="doctor-text" href="#">Doctor Statistics</a>
+                        </div>
+                        <form class="search-container">
+                           <input type="text" id="search" placeholder="&#xF002; Search here...."  />
+                        </form>
+                    </nav>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table display text-center borderless" id="myTable">
+                                <thead>
+                                    <tr>
+                                        <th>Doctor</th>
+                                        <th>Patients</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for v in docstats %}	
+                                    <tr>
+                                        <td>{{v.doc_name}}</td>
+                                        <td class="v-count">{{v.count}}</td>
+                                        <td>
+                                            {% seconds_to_hm v.avg_visit_tm as vtime %}													
+                                        <i class="p-2 fa-regular fa-clock"></i>
+
+                                            <span
+                                                class="time {% if v.avg_visit_tm > kpi__ %} t-tomato {% else %} t-green {% endif %}">
+                                                {{ vtime | default:"00:00" }}
+                                            </span>  
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>                   
+                   </div>
+                </div>
+            </div>
+        </div>
+      
+        <!-- .......................zone ..........................  -->
+
+    </div>
+</div>
+
+
+<script>
+  $(document).ready(function () {
+    var table = $('#myTable').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "pageLength": 4,
+        "info": "",
+        "searching": false,
+        "order": [],
+        "language": {
+            "paginate": {
+                "next": "\u2192",
+                "previous": "\u2190"
+            }
+        }
+    });
+
+    $('#search').on('keyup', function () {
+        table.search(this.value).draw();
+    });
+});
+
+</script>
+
+ 
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
+<!-- "Triage Time By Interval" -->
+
+<script>
+    var jsonData = {{ jsonData|safe }};
+    var chartData = jsonData.graphs.AccidentEmergency.triage["comparison-1"];
+    
+    var series = [];
+
+    chartData.y.forEach(function(dataSet) {
+        if (dataSet.type === 'column' || dataSet.type === 'line') {
+            series.push({
+                name: dataSet.name,
+                type: dataSet.type,
+                data: dataSet.data,
+            });
+        }
+    });
+
+    var chartOptions = {
+        chart: {
+            height: 320,
+            type: 'line',
+            toolbar: {
+                show: true,
+            },
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function(val, opts) {
+                if (opts.seriesIndex === 1) { 
+                    var hours = Math.floor(val / 3600);
+                    var minutes = Math.floor((val % 3600) / 60);
+                    return hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
+                } else {
+                    return val;
+                }
+            },
+        },
+        stroke: {
+            width: [0, 4],
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: '50%',
+                distributed: true,
+            },
+        },
+        xaxis: {
+            categories: chartData.x,
+        },
+        yaxis: [
+            {
+                title: {
+                    text: "Patients",
+                },
+            },
+            {
+                opposite: true,
+                title: {
+                    text: "Average Time",
+                },
+                labels: {
+                    formatter: function(value) {
+                        var hours = Math.floor(value / 3600);
+                        var minutes = Math.floor((value % 3600) / 60);
+                        return hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
+                    },
+                },
+            },
+        ],
+        series: series,
+        title: {
+            text: chartData.title,
+            style: {
+                color: '#FF0000',
+                    margin: "50px",  
+            },
+            offsetY: 20, 
+        },
+        legend: {
+            show: true,
+        },
+        colors: series.map(function(dataSet) {
+            return dataSet.type === 'column' ? '#673397' : '#d19d00';
+        }),
+    };
+
+    var chartContainer = new ApexCharts(document.querySelector("#chartinterval"), chartOptions);
+    chartContainer.render();
+</script> 
+
+<!-- "Triage Time By Interval" -->
+
+<!-- "Patients by Zone" -->
+
+<script>
+    var jsonData = {{ jsonData| safe }};
+
+    var chartData = jsonData.graphs.AccidentEmergency.Zone["barpie-1"];
+
+    var donutOptions = {
+        chart: {
+            height: 280,
+            type: "donut",
+        },
+        labels: chartData.pie.x,
+        series: chartData.pie.y,
+        title: {
+            text: chartData.title,
+            style: {
+                color: 'blue',
+            },
+        },
+        colors: ["#FF5733", "#FFC300", "#33FF57", "#33B5FF"],
+        legend: {
+            show: true,
+        },
+    };
+
+    var donutChart = new ApexCharts(document.querySelector("#donut-chart"), donutOptions);
+    donutChart.render();
+
+</script>
+
+
+<!-- "Patients by Zone" -->
+
+
+<!-- "Patients By Interval" -->
+
+<script>
+    var jsonData = {{ jsonData|safe }};
+    var chartData = jsonData.graphs.AccidentEmergency.interval["barline-1"];
+    var chartOptions = {
+        chart: {
+            height: 280,
+            type: 'line',
+            toolbar: {
+                show: true,
+            },
+        },
+        dataLabels: {
+            enabled: true, 
+            position: 'bottom',
+            formatter: function(val, opts) {
+                if (opts.seriesIndex === 1) { 
+                    var hours = Math.floor(val / 3600);
+                    var minutes = Math.floor((val % 3600) / 60);
+                    return hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
+                } else {
+                    return val;
+                }
+            },
+        },
+        stroke: {
+            width: [0, 4],
+        },
+        plotOptions: {
+            bar: {
+                 borderRadius: 10,
+                columnWidth: '50%',
+                distributed: true,
+            },
+        },
+        xaxis: {
+            categories: chartData.x,
+        },
+        yaxis: [
+            {
+                title: {
+                    text: "Patients",            
+                },
+            },
+            {
+                opposite: true,
+                title: {
+                    text: "Average Time",
+                },
+                labels: {
+                    formatter: function(value) {
+                        var hours = Math.floor(value / 3600);
+                        var minutes = Math.floor((value % 3600) / 60);
+                        return hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
+                    },
+                },
+            },
+        ],
+        series: [
+            {
+                name: "Patients",
+                type: "column",
+                data: chartData.y[0].data,
+            },
+            {
+                name: "Average Time",
+                type: "line",
+                data: chartData.y[1].data,
+            },
+        ],
+        title: {
+            text: chartData.title,
+            style: {
+                        color: '#673397' 
+                    },
+        },
+        legend: {
+            show: true,
+        },
+        colors: ["#FF5733", "#FFC300", "#33FF57", "#33B5FF"],
+
+    };
+
+    var chartContainer = new ApexCharts(document.querySelector("#chart"), chartOptions);
+    chartContainer.render();
+</script> 
+
+<!-- "Patients By Interval" -->
+
+
+<!-- "Consultation by Interval" -->
+
+<script>
+    var jsonData = {{ jsonData|safe }};
+    var chartData = jsonData.graphs.AccidentEmergency.Doctor["barline-1"];
+    
+    var chartOptions = {
+        chart: {
+            height: 280,
+            type: 'line',
+            toolbar: {
+                show: true,
+            },
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function(val, opts) {
+                if (opts.seriesIndex === 1) { 
+                    var hours = Math.floor(val / 3600);
+                    var minutes = Math.floor((val % 3600) / 60);
+                    return hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
+                } else {
+                    return val;
+                }
+            },
+        },
+        stroke: {
+            width: [0, 4, 4],
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: '50%',
+                distributed: true,
+            },
+        },
+        xaxis: {
+            categories: chartData.x,
+        },
+        yaxis: [
+            {
+                title: {
+                    text: "Total Visits",
+                    style: {
+                        color: '#FF0000', 
+                        fontSize: '10px', 
+                        marginTop: '10px', 
+                    },
+                },
+            },
+            {
+                opposite: true,
+                title: {
+                    text: "Average Time",
+                    style: {
+                        color: '#0000FF', 
+                    },
+                },
+                labels: {
+                    formatter: function(value) {
+                        var hours = Math.floor(value / 3600);
+                        var minutes = Math.floor((value % 3600) / 60);
+                        return hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
+                    },
+                },
+            },
+        ],
+        series: [
+            {
+                name: "Total Visits",
+                type: "column",
+                data: chartData.y[0].data,
+            },
+            {
+                name: "Average Time",
+                type: "line",
+                data: chartData.y[1].data,
+            },
+        ],
+        title: {
+            text: chartData.title,
+            style: {
+                color: '#0000FF',
+            },
+        },
+        legend: {
+            show: true,
+        },
+        colors: ['#FF0000', '#0000FF'], 
+    };
+
+    var chartContainer = new ApexCharts(document.querySelector("#chartdoctor"), chartOptions);
+    chartContainer.render();
+</script>
+
+<!-- "Consultation by Interval" -->

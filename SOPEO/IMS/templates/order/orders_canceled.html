@@ -1,0 +1,29 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-6 offset-md-3 bg-light">
+            <h1>Orders Canceled for {{ item.name }}</h1>
+            <ul>
+                {% for order in orders %}
+                <br>
+                
+                <li>
+                    Order ID: {{ order.id }} - Quantity: {{ order.quantity }} - Cost: {{ order.cost }}v Order Date: {{ order.orderdttm }}
+                </li>
+                {% empty %}
+                     <li>No item</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

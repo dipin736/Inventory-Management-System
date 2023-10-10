@@ -1,0 +1,42 @@
+{% extends 'home.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row ">
+        <div class="col-12 mt-5 ">
+            <div class="table">
+                <table class="table table-bordered"">
+                    <thead>
+                        <th colspan="8" class="text-center text-primary">Transaction list</th>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>IIN</th>
+                            <th>Selling_price </th>
+                            <th>Quantity</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in transactions %}
+                            <tr>
+                                <td>{{ i.id }}</td>
+                                <td>{{ i.item.name }}</td>
+                                <td>{{i.item.iin}}</td>
+                                <td>₹{{i.item.selling_price}}</td>
+                                <td>{{ i.quantity }}</td>
+                                <td>{{i.transactiondttm}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

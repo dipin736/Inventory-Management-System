@@ -1,0 +1,28 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-6 offset-md-3">
+            <div class="bg-light">
+                <h1>Item Details</h1>
+                <h2>{{ inventory_item.name }}</h2>
+                <p>Item ID: {{ inventory_item.iin }}</p>
+                <p>Cost: ${{ inventory_item.cost }}</p>
+                <p>Quantity in Stock: {{ inventory_item.quantity }}</p>
+                <p>Quantity Sold: {{ inventory_item.quantity_sold }}</p>
+                <p>Selling Price: ${{ inventory_item.selling_price }}</p>
+
+                <a href="{% url 'list_inventory' %}" class="btn btn-danger">Back</a>
+                <a href="{% url 'orders-placed' inventory_item.id %}"  class="btn btn-danger">Orders Placed</a>
+                <a href="{% url 'orders-received' inventory_item.id %}"  class="btn btn-danger">Orders Received</a>
+                <a href="{% url 'orders-canceled' inventory_item.id %}"  class="btn btn-danger">Orders Canceled</a>
+                <a href="{% url 'items-sold' inventory_item.id %}"  class="btn btn-danger">Items Sold</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
