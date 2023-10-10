@@ -98,9 +98,10 @@ DATABASES = {
 
 
 DATABASES = {
-	"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL', 'postgres://inventory_1o6w_user:Z7vgf5X6wTdbkASTPbdtmwxDMcRhtAai@dpg-ckie9tomccbs73857gr0-a.oregon-postgres.render.com/inventory_1o6w')
+    )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
